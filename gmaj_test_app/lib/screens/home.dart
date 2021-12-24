@@ -49,8 +49,10 @@ class Home extends StatelessWidget {
           },
           tileColor: Colors.orange,
           title: Text(usuario.firstName),
-          leading: CachedNetworkImage(
-            imageUrl: usuario.avatar,
+          leading: FadeInImage.assetNetwork(
+            placeholder: 'assets/loading.gif',
+            image: usuario.avatar,
+            imageCacheWidth: 50,
             width: 50,
           ),
         ),
