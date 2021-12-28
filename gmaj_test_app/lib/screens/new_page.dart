@@ -59,9 +59,6 @@ class _NewPageState extends State<NewPage> {
           ),
         ],
       ),
-      appBar: AppBar(
-          // backgroundColor: Colors.blue,
-          ),
       // appBar: AppBar(
       //   title: Text('Nueva Pantalla'),
       //   centerTitle: true,
