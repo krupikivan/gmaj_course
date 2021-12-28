@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primarySwatch: Colors.green),
         debugShowCheckedModeBanner: false,
         // home: NewPage(),
+        title: 'Curso Gmaj',
 
         initialRoute: '/new_page', // ruta inicial por defecto
         routes: {
