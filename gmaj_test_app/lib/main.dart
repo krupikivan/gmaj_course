@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.green),
         debugShowCheckedModeBanner: false,
+        // debugShowMaterialGrid: true,
         // home: NewPage(),
         title: 'Curso Gmaj',
 
