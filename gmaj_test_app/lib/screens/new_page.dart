@@ -31,6 +31,7 @@ class _NewPageState extends State<NewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       drawer: Drawer(),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
