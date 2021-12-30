@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       // Creamos la instancia o sea al sujeto que emite el estado
-      create: (BuildContext context) => UsuarioProvider(),
+      create: (BuildContext context) => UsuarioProvider.init(),
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.green),
         debugShowCheckedModeBanner: false,

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gmaj_test_app/models/data_model.dart';
+import 'package:gmaj_test_app/models/user.dart';
+import 'package:gmaj_test_app/providers/usuario_provider.dart';
+import 'package:provider/provider.dart';
 
 class DetalleUsuario extends StatelessWidget {
   final User usuario;
@@ -12,8 +14,6 @@ class DetalleUsuario extends StatelessWidget {
       appBar: AppBar(),
       body: SafeArea(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Id: ${usuario.id}'),
             Stack(
@@ -65,9 +65,20 @@ class DetalleUsuario extends StatelessWidget {
                     icon: Icon(CupertinoIcons.mail),
                   ),
                   IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.star_outline_rounded,
+                    onPressed: () => context
+                        .read<UsuarioProvider>()
+                        .agregarRemoverUsuarioFavorito(usuario.id),
+                    icon: Consumer<UsuarioProvider>(
+                      builder: (context, data, _) {
+                        bool esFavorito =
+                            data.listadoFavoritos.contains(usuario.id);
+
+                        return Icon(
+                          esFavorito ? Icons.favorite : Icons.favorite_outline,
+                          color: esFavorito ? Colors.red : Colors.black,
+                          size: 50,
+                        );
+                      },
                     ),
                   ),
                 ],
