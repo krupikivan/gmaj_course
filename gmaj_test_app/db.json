@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 5,
+      "email": "charles.morris@reqres.in",
+      "first_name": "Charles",
+      "last_name": "Morris",
+      "avatar": "https://reqres.in/img/faces/5-image.jpg"
+    },
+    {
+      "id": 8,
+      "email": "lindsay.ferguson@reqres.in",
+      "first_name": "Lindsay",
+      "last_name": "Ferguson",
+      "avatar": "https://reqres.in/img/faces/8-image.jpg"
+    },
+    {
+      "id": 12,
+      "email": "rachel.howell@reqres.in",
+      "first_name": "Rachel",
+      "last_name": "Howell",
+      "avatar": "https://reqres.in/img/faces/12-image.jpg"
+    },
+    {
+      "email": "gmaj@gmaj.com",
+      "first_name": "GMAJ",
+      "last_name": "Center",
+      "avatar": "https://reqres.in/img/faces/1-image.jpg",
+      "id": 20
+    },
+    {
+      "email": "gmaj@gmaj.com",
+      "first_name": "GMAJ",
+      "last_name": "Center",
+      "avatar": "https://reqres.in/img/faces/1-image.jpg",
+      "id": 21
+    },
+    {
+      "email": "gmaj@gmaj.com",
+      "first_name": "GMAJ",
+      "last_name": "Center",
+      "avatar": "https://reqres.in/img/faces/1-image.jpg",
+      "id": 22
+    }
+  ]
+}

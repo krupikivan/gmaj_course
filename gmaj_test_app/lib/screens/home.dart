@@ -16,6 +16,10 @@ class Home extends StatelessWidget {
       child: Consumer<UsuarioProvider>(
         builder: (BuildContext context, data, _) {
           return Scaffold(
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: context.read<UsuarioProvider>().agregarNuevoUsuario,
+            ),
             appBar: AppBar(
               title: Text('Home'),
               actions: [

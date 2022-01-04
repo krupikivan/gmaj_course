@@ -43,14 +43,42 @@ class UsuarioProvider extends ChangeNotifier {
     getUserData();
   }
 
+  Future eliminarUsuario(String id) async {
+    try {
+      Client http = Client();
+      Uri uri = Uri.parse('http://localhost:3004/users/$id');
+      await http.delete(
+        uri,
+      );
+      getUserData();
+    } catch (e) {}
+  }
+
+  Future agregarNuevoUsuario() async {
+    try {
+      Client http = Client();
+      Uri uri = Uri.parse('http://localhost:3004/users');
+      await http.post(
+        uri,
+        body: {
+          "email": "gmaj@gmaj.com",
+          "first_name": "GMAJ",
+          "last_name": "Center",
+          "avatar": "https://reqres.in/img/faces/1-image.jpg"
+        },
+      );
+      getUserData();
+    } catch (e) {}
+  }
+
   Future getUserData() async {
     _estaCargandoDatos = true;
     notifyListeners();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String datosJson;
+    var datosJson;
     try {
       Client http = Client();
-      Uri uri = Uri.parse('https://reqres.in/api/users');
+      Uri uri = Uri.parse('http://localhost:3004/users');
       Response respuesta = await http.get(uri);
       prefs.setString(
           'datosDeInternet', respuesta.body); // guardando de forma local
@@ -58,9 +86,10 @@ class UsuarioProvider extends ChangeNotifier {
     } catch (e) {
       datosJson = prefs.getString('datosDeInternet');
     }
-    Map map = jsonDecode(datosJson);
+    List usuariosData = jsonDecode(datosJson);
     List<User> listaDeUsuarios =
-        List<User>.from(map["data"].map((x) => User.fromJson(x)));
+        List<User>.from(usuariosData.map((x) => User.fromJson(x)));
+
     _usuarios.clear();
     _usuarios.addAll(listaDeUsuarios);
     _estaCargandoDatos = false;

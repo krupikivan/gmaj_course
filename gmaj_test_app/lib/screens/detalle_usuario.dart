@@ -11,6 +11,16 @@ class DetalleUsuario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
+        onPressed: () {
+          Navigator.pop(context);
+          context.read<UsuarioProvider>().eliminarUsuario(usuario.id);
+        },
+        child: Icon(
+          Icons.delete,
+        ),
+      ),
       appBar: AppBar(),
       body: SafeArea(
         child: Column(
