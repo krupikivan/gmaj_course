@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 
         initialRoute: '/new_page', // ruta inicial por defecto
         routes: {
-          '/': (_) => const Home(),
+          '/': (_) => Home(),
           '/new_page': (_) => NewPage(),
           '/bienvenida': (_) => Bienvenida(),
           '/listViewScreen': (_) => ListViewScreen(),
