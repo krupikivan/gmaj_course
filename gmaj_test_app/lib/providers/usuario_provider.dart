@@ -18,22 +18,28 @@ class UsuarioProvider extends ChangeNotifier {
   bool _estaCargandoDatos = false;
   bool get estaCargandoDatos => _estaCargandoDatos;
 
-  agregarRemoverUsuarioFavorito(String idUsuario) async {
+  Future<bool> agregarRemoverUsuarioFavorito(String idUsuario) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool fueAgregado;
     if (_listadoFavoritos.contains(idUsuario) == true) {
       _listadoFavoritos.remove(idUsuario);
+      fueAgregado = false;
     } else {
       _listadoFavoritos.add(idUsuario);
+      fueAgregado = true;
     }
 
     await prefs.setStringList('listadoFavoritos', _listadoFavoritos);
     notifyListeners();
+    return fueAgregado;
   }
 
   cargarListadoFavoritoDesdePreferencias() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> listado = await prefs.getStringList('listadoFavoritos');
-    _listadoFavoritos.addAll(listado);
+    if (listado != null) {
+      _listadoFavoritos.addAll(listado);
+    }
     getUserData();
   }
 

@@ -61,12 +61,17 @@ class Home extends StatelessWidget {
             width: 50,
           ),
           trailing: Consumer<UsuarioProvider>(builder: (context, data, _) {
-            return Icon(
-              Icons.favorite,
-              color: data.listadoFavoritos.contains(usuario.id)
-                  ? Colors.red
-                  : Colors.black38,
-            );
+            Widget widget;
+            if (data.listadoFavoritos.contains(usuario.id)) {
+              widget = Icon(
+                Icons.favorite,
+                color: Colors.red,
+              );
+            } else {
+              widget = SizedBox();
+            }
+            ;
+            return widget;
           }),
         ),
       );

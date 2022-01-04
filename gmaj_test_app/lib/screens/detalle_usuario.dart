@@ -65,9 +65,21 @@ class DetalleUsuario extends StatelessWidget {
                     icon: Icon(CupertinoIcons.mail),
                   ),
                   IconButton(
-                    onPressed: () => context
-                        .read<UsuarioProvider>()
-                        .agregarRemoverUsuarioFavorito(usuario.id),
+                    onPressed: () async {
+                      bool isFavorite = await context
+                          .read<UsuarioProvider>()
+                          .agregarRemoverUsuarioFavorito(usuario.id);
+                      var mensaje = [
+                        'Agregaste a ${usuario.firstName} a favoritos',
+                        'Eliminaste a ${usuario.firstName} de favoritos'
+                      ];
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(mensaje[isFavorite ? 0 : 1]),
+                        ),
+                      );
+                    },
                     icon: Consumer<UsuarioProvider>(
                       builder: (context, data, _) {
                         bool esFavorito =
