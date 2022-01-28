@@ -6,6 +6,8 @@ import 'package:gmaj_test_app/screens/detalle_usuario.dart';
 import 'package:gmaj_test_app/widgets/search_users.dart';
 import 'package:provider/provider.dart';
 
+import 'agregar_usuario_screen.dart';
+
 class Home extends StatelessWidget {
   Home({Key key}) : super(key: key);
 
@@ -18,7 +20,11 @@ class Home extends StatelessWidget {
           return Scaffold(
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
-              onPressed: context.read<UsuarioProvider>().agregarNuevoUsuario,
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => AgregarUsuario(),
+                  )),
             ),
             appBar: AppBar(
               title: Text('Home'),

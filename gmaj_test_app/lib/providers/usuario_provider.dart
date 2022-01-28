@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:gmaj_test_app/models/user.dart';
 import 'package:http/http.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UsuarioProvider extends ChangeNotifier {
@@ -14,6 +17,17 @@ class UsuarioProvider extends ChangeNotifier {
 
   List<String> _listadoFavoritos = [];
   List<String> get listadoFavoritos => _listadoFavoritos;
+
+  Uint8List _file;
+  XFile _imagen;
+  XFile get imagen => _imagen;
+  Uint8List get file => _file;
+
+  agregarImagen(XFile imagen) async {
+    _file = await imagen.readAsBytes();
+    _imagen = imagen;
+    notifyListeners();
+  }
 
   bool _estaCargandoDatos = false;
   bool get estaCargandoDatos => _estaCargandoDatos;
@@ -54,17 +68,22 @@ class UsuarioProvider extends ChangeNotifier {
     } catch (e) {}
   }
 
-  Future agregarNuevoUsuario() async {
+  Future agregarNuevoUsuario({
+    String email,
+    String firstName,
+    String lastName,
+  }) async {
     try {
       Client http = Client();
       Uri uri = Uri.parse('http://localhost:3004/users');
+      File file = File.fromRawPath(_file);
       await http.post(
         uri,
         body: {
-          "email": "gmaj@gmaj.com",
-          "first_name": "GMAJ",
-          "last_name": "Center",
-          "avatar": "https://reqres.in/img/faces/1-image.jpg"
+          "email": email,
+          "first_name": firstName,
+          "last_name": lastName,
+          "avatar": file.path
         },
       );
       getUserData();
